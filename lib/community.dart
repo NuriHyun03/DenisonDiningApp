@@ -52,6 +52,7 @@ class _TestPageState extends State<TestPage> {
             backgroundColor: const Color.fromRGBO(200, 16, 46, 1),
           ),
           body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
             child: Column(
               children: [
                 menuListbyTimeslot(dbtoDart, 'slayter-market', 'Breakfast'),
