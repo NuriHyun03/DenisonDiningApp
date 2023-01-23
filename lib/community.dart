@@ -51,16 +51,19 @@ class _TestPageState extends State<TestPage> {
             ),
             backgroundColor: const Color.fromRGBO(200, 16, 46, 1),
           ),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                menuListbyTimeslot(dbtoDart, 'slayter-market', 'Breakfast'),
-                //menuListbyTimeslot(dbtoDart, 'slayter-market', 'Lunch'),
-                //menuListbyTimeslot(dbtoDart, 'slayter-market', 'Dinner'),
-                menuListbyTimeslot(dbtoDart, 'slayter-market', 'Lunch Dinner'),
-                //menuListbyTimeslot(dbtoDart, 'slayter-market', 'Late Night'),
-              ],
+          body: Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  menuListbyTimeslot(dbtoDart, 'slayter-market', 'Breakfast'),
+                  //menuListbyTimeslot(dbtoDart, 'slayter-market', 'Lunch'),
+                  //menuListbyTimeslot(dbtoDart, 'slayter-market', 'Dinner'),
+                  menuListbyTimeslot(
+                      dbtoDart, 'slayter-market', 'Lunch Dinner'),
+                  //menuListbyTimeslot(dbtoDart, 'slayter-market', 'Late Night'),
+                ],
+              ),
             ),
           ),
         );
@@ -71,18 +74,33 @@ class _TestPageState extends State<TestPage> {
   FutureBuilder<QuerySnapshot<Object?>> menuListbyTimeslot(
       DbtoDart dbtoDart, String name, String timeslot) {
     return FutureBuilder<QuerySnapshot>(
-      future: dbtoDart.read(name, timeslot),
-      builder: (context, snapshot) {
-        final documents = snapshot.data?.docs ?? [];
-        return ListView.builder(
-          shrinkWrap: true,
-          itemCount: documents.length,
-          itemBuilder: (context, index) {
-            final doc = documents[index];
+        future: dbtoDart.read(name, timeslot),
+        builder: (context, snapshot) {
+          final documents = snapshot.data?.docs ?? [];
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: documents.length,
+            itemBuilder: (context, index) {
+              final doc = documents[index];
 
-            String breakfast = doc.get('Name');
-            int likes = doc.get('Like');
-            return ListTile(
+              String breakfast = doc.get('Name');
+              int likes = doc.get('Like');
+              return ListTile(
+                title: Text(
+                  breakfast,
+                  style: TextStyle(fontSize: 24, color: Colors.black),
+                ),
+                trailing: Wrap(
+                  spacing: 12,
+                  children: <Widget>[
+                    Icon(CupertinoIcons.heart),
+                    Text(
+                      likes.toString(),
+                    )
+                  ],
+                ),
+              );
+              /*return ListTile(
               title: Text(
                 breakfast + ' ' + likes.toString() + '❤',
                 style: TextStyle(
@@ -93,8 +111,9 @@ class _TestPageState extends State<TestPage> {
               trailing: Icon(CupertinoIcons.heart),
             );
           },
-        );
-      },
-    );
+        );*/
+            },
+          );
+        });
   }
 }
