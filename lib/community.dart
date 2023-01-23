@@ -71,22 +71,15 @@ class _TestPageState extends State<TestPage> {
   FutureBuilder<QuerySnapshot<Object?>> menuListbyTimeslot(
       DbtoDart dbtoDart, String name, String timeslot) {
     return FutureBuilder<QuerySnapshot>(
-      future: dbtoDart.read('slayter-market', 'Breakfast'),
+      future: dbtoDart.read(name, timeslot),
       builder: (context, snapshot) {
         final documents = snapshot.data?.docs ?? [];
-        /*if (documents.isEmpty) {
-          print(documents.length);
-          return Center(child: Text("No data"));
-        }
-        */
         return ListView.builder(
           shrinkWrap: true,
           itemCount: documents.length,
           itemBuilder: (context, index) {
-            //print(documents.length);
             final doc = documents[index];
 
-            //String breakfast = doc.get('Breakfast');
             String breakfast = doc.get('Name');
             int likes = doc.get('Like');
             return ListTile(
