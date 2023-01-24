@@ -16,6 +16,7 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
+  ScrollController listScrollController = ScrollController();
   @override
   WebViewController controller = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -51,20 +52,9 @@ class _TestPageState extends State<TestPage> {
             ),
             backgroundColor: const Color.fromRGBO(200, 16, 46, 1),
           ),
-          body: Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  menuListbyTimeslot(dbtoDart, 'slayter-market', 'Breakfast'),
-                  //menuListbyTimeslot(dbtoDart, 'slayter-market', 'Lunch'),
-                  //menuListbyTimeslot(dbtoDart, 'slayter-market', 'Dinner'),
-                  menuListbyTimeslot(
-                      dbtoDart, 'slayter-market', 'Lunch Dinner'),
-                  //menuListbyTimeslot(dbtoDart, 'slayter-market', 'Late Night'),
-                ],
-              ),
-            ),
+          body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: menuListbyTimeslot(dbtoDart, 'slayter-market', 'Breakfast'),
           ),
         );
       },
@@ -78,6 +68,7 @@ class _TestPageState extends State<TestPage> {
         builder: (context, snapshot) {
           final documents = snapshot.data?.docs ?? [];
           return ListView.builder(
+            controller: listScrollController,
             shrinkWrap: true,
             itemCount: documents.length,
             itemBuilder: (context, index) {
@@ -100,18 +91,6 @@ class _TestPageState extends State<TestPage> {
                   ],
                 ),
               );
-              /*return ListTile(
-              title: Text(
-                breakfast + ' ' + likes.toString() + '❤',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Color.fromARGB(255, 104, 55, 55),
-                ),
-              ),
-              trailing: Icon(CupertinoIcons.heart),
-            );
-          },
-        );*/
             },
           );
         });
