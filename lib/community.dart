@@ -1,3 +1,4 @@
+import 'package:denison_dining_app2/heart_toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +8,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import 'package:path_provider/path_provider.dart';
 import 'firestoreApi.dart';
+import 'package:like_button/like_button.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({Key? key}) : super(key: key);
@@ -81,15 +83,7 @@ class _TestPageState extends State<TestPage> {
                   breakfast,
                   style: TextStyle(fontSize: 24, color: Colors.black),
                 ),
-                trailing: Wrap(
-                  spacing: 12,
-                  children: <Widget>[
-                    Icon(CupertinoIcons.heart),
-                    Text(
-                      likes.toString(),
-                    )
-                  ],
-                ),
+                trailing: HeartButton(),
               );
             },
           );
