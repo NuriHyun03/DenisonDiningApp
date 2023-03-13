@@ -13,6 +13,7 @@ class _HeartButtonState extends State<HeartButton> {
   Widget build(BuildContext context) {
     return IconButton(
       icon: _isPressed ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+      color: _isPressed ? Colors.red : null,
       onPressed: () {
         setState(() {
           _isPressed = !_isPressed;
