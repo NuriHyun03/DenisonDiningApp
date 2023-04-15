@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:denison_dining_app2/frontPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +47,9 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            CampusMapVisual(), //show campus map
+            //CampusMapVisual(), //show campus map
+
+            FrontPageImage(),
 
             Container(
               margin: EdgeInsets.only(
