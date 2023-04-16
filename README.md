@@ -14,3 +14,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+## database reference
+Executing a program or a function periodically
+https://firebase.google.com/docs/functions/schedule-functions
+https://www.harrisoncramer.me/real-time-web-scraping-with-firebase-and-twilio/
