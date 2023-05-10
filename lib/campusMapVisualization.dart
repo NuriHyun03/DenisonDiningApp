@@ -15,6 +15,7 @@ class CampusMapVisual extends StatelessWidget {
         minScale: 0.1,
         boundaryMargin: const EdgeInsets.all(0),
         maxScale: 3,
+        // child: Image.asset('Denison_University_Map.png', fit: BoxFit.contain),
         child: Image.asset('Denison_University_Map.png', fit: BoxFit.contain),
       ),
     );

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:denison_dining_app2/frontPage.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'firebase_options.dart';
 import 'firestoreApi.dart';
 import 'campusMapVisualization.dart';
 import 'diningHallButtons.dart';
@@ -14,6 +16,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
+
+  if (Platform.isIOS) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
 
   runApp(
     MultiProvider(
@@ -49,7 +59,7 @@ class MyApp extends StatelessWidget {
           children: [
             //CampusMapVisual(), //show campus map
 
-            FrontPageImage(),
+            //FrontPageImage(),
 
             Container(
               margin: EdgeInsets.only(
